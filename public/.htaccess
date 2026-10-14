@@ -1,0 +1,6 @@
+# Blocca l'accesso diretto ai dati e ai sorgenti inclusi
+<FilesMatch "\.(json|lock|tmp)$">
+  Require all denied
+</FilesMatch>
+Options -Indexes
+DirectoryIndex index.php

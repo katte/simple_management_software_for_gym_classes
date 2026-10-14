@@ -1,0 +1,60 @@
+/* Fogli di stampa: a video si vedono come pagine A4, in stampa diventano il foglio vero. */
+:root{ --ink:#111; --line:#c8ccd2; --muted:#5a6472; }
+*{box-sizing:border-box}
+body{margin:0;background:#eceef1;color:var(--ink);
+  font:12px/1.35 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+
+.toolbar{position:sticky;top:0;z-index:5;display:flex;gap:8px;align-items:center;flex-wrap:wrap;
+  background:#fff;border-bottom:1px solid var(--line);padding:10px 16px}
+.toolbar .titolo{font-weight:700;margin-right:auto}
+.toolbar button,.toolbar a{font:inherit;padding:7px 14px;border:1px solid var(--line);background:#fff;
+  border-radius:8px;cursor:pointer;text-decoration:none;color:inherit}
+.toolbar button.primary{background:#111;color:#fff;border-color:#111}
+.toolbar .hint{color:var(--muted);font-size:11.5px;width:100%}
+
+.foglio{background:#fff;width:210mm;min-height:296mm;margin:14px auto;padding:14mm 12mm;
+  box-shadow:0 2px 10px rgba(0,0,0,.14)}
+.landscape .foglio{width:297mm;min-height:209mm}
+
+.testata{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;
+  border-bottom:2px solid var(--ink);padding-bottom:6px;margin-bottom:10px}
+.testata h1{font-size:17px;margin:0}
+.testata .sub{font-size:12px;color:var(--muted);margin-top:3px}
+.testata .dx{text-align:right;font-size:11px;color:var(--muted);white-space:nowrap}
+
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{text-align:left;font-size:10.5px;text-transform:uppercase;letter-spacing:.03em;
+  border-bottom:1.5px solid var(--ink);padding:5px 6px}
+td{border-bottom:1px solid var(--line);padding:6px;height:22px}
+td.num{width:26px;text-align:center;color:var(--muted)}
+td.vuota{color:#fff}
+tr.libera td{background:#fafbfc}
+.col-tel{width:26%}
+.col-cert{width:20%}
+.scaduto{font-weight:700}
+.chiusura{margin-top:8px;font-size:10.5px;color:var(--muted);display:flex;justify-content:space-between}
+
+/* calendario */
+.settimana{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
+.giorno{border:1px solid var(--line);border-radius:4px;padding:5px;break-inside:avoid}
+.giorno h2{font-size:11px;margin:0 0 5px;text-transform:uppercase;letter-spacing:.04em;
+  border-bottom:1px solid var(--line);padding-bottom:3px}
+.lezione{border-left:3px solid #888;padding:3px 5px;margin-bottom:5px;background:#f7f8f9;
+  break-inside:avoid;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.lezione .o{font-weight:700;font-size:11px}
+.lezione .n{font-size:11px}
+.lezione .m{font-size:9.5px;color:var(--muted)}
+.legenda{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:8px;font-size:11px}
+.legenda span{display:flex;align-items:center;gap:5px}
+.legenda i{width:10px;height:10px;border-radius:2px;display:inline-block;
+  -webkit-print-color-adjust:exact;print-color-adjust:exact}
+
+@page{size:A4 portrait;margin:12mm}
+@media print{
+  body{background:#fff}
+  .toolbar{display:none}
+  .foglio{width:auto;min-height:0;margin:0;padding:0;box-shadow:none;page-break-after:always}
+  .foglio:last-child{page-break-after:auto}
+  tr{page-break-inside:avoid}
+  thead{display:table-header-group}
+}

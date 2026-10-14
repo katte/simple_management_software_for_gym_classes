@@ -1,0 +1,13 @@
+<?php
+/**
+ * Configurazione locale del server. NON è necessaria nei casi normali.
+ *
+ * Copia questo file in "inc/config.local.php" (togliendo .esempio) solo se l'archivio
+ * non si trova né in <progetto>/data né in <progetto>/../dati, oppure se vuoi indicare
+ * un percorso assoluto senza lasciare nulla all'individuazione automatica.
+ *
+ * Il file non va mai messo dentro la document root se contiene percorsi sensibili:
+ * sta in inc/, che è già sotto la protezione dell'applicazione.
+ */
+
+define('GESTPAL_DATA_DIR', '/home/tuoutente/palestra/dati');
